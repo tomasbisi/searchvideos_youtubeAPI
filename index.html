@@ -8,6 +8,29 @@
     <script src="js/script.js"></script>
   </head>
   <body>
+      <div id="container">
+        <header>
+          <h1><span>Videos</span></h1>
+          <p>Search all YouTube videos</p>
+
+          <section>
+            <form id="search-form" name="search-form" onsubmit="return search()">
+              <div class="fieldcontainer">
+                <input type="search" id="query" class="search-field" placeholder="Search YouTube...">
+                <input type="submit" name="search-btn" id="search-btn" value="">
+              </div>
+            </form>
+            <ul id="results"></ul>
+            <div id="buttons"></div>
+
+          </section>
+
+          <footer>
+             <p>Copyright &copy; 2016, All Rights Reserved</p>  
+          </footer>
+
+        </header>
+      </div>
 
   </body>
 </html>
