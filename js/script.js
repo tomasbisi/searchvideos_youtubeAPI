@@ -53,8 +53,8 @@ $(function(){
         key: 'AIzaSyBZVtwa0eDFYQ794aMpif0idFdtvo1ELCk'},
 
         function(data){
-          var nextPageToken = data.nextPageToke;
-          var prevPageToken = data.prevPageToke;
+          var nextPageToken = data.nextPageToken;
+          var prevPageToken = data.prevPageToken;
 
           // Log Data
           console.log(data);
@@ -69,7 +69,9 @@ $(function(){
 
           });
 
-
+            var buttons = getButtons(prevPageToken, nextPageToken);
+            // Display buttons
+            $('#buttons').append(buttons);
         }
     );
     }
@@ -99,4 +101,21 @@ $(function(){
 
             return output;
 
+      }
+
+      // Get buttons
+         function getButtons(prevPageToken, nextPageToken){
+	          if(!prevPageToken){
+		            var btnoutput = '<div class="button-container">'+
+                '<button id="next-button" class="paging-button" data-token="'+nextPageToken+'" data-query="'+q+'"' +
+		            'onclick="nextPage();">Next Page</button></div>';
+	          } else {
+		            var btnoutput = '<div class="button-container">'+
+		              '<button id="prev-button" class="paging-button" data-token="'+prevPageToken+'" data-query="'+q+'"' +
+		              'onclick="prevPage();">Prev Page</button>' +
+		              '<button id="next-button" class="paging-button" data-token="'+nextPageToken+'" data-query="'+q+'"' +
+		              'onclick="nextPage();">Next Page</button></div>';
+	            }
+
+        return btnoutput;
       }
