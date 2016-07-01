@@ -28,6 +28,11 @@ $(function(){
 
     });
 
+    // Prevent search bar to submit
+    $('#search-form').submit(function(e){
+      e.preventDefault();
+    });
+
 
 })
 
@@ -45,17 +50,53 @@ $(function(){
         part: 'snippet, id',
         q: q,
         type: 'video',
-        key: 'AIzaSyAl2U88OLb7wsm3qKj4bBPjEb0KlgKdP_M'},
+        key: 'AIzaSyBZVtwa0eDFYQ794aMpif0idFdtvo1ELCk'},
 
         function(data){
           var nextPageToken = data.nextPageToke;
           var prevPageToken = data.prevPageToke;
 
+          // Log Data
           console.log(data);
 
-          // $.each(data.items){
-          //
-          // }
+
+          $.each(data.items, function(i, item){
+            // Get Output
+            var output = getOutput(item);
+
+            // Display Results
+            $('#results').append(output);
+
+          });
+
+
         }
     );
     }
+
+      // Build Output
+      function getOutput(item){
+        var videoId = item.id.videoId;
+        var title = item.snippet.title;
+        var description = item.snippet.description;
+        var thumb = item.snippet.thumbnails.high.url;
+        var channelTitle = item.snippet.channelTitle;
+        var videoDate = item.snippet.publishedAt;
+
+          // Build Output string
+          var output = '<li>' +
+            '<div class="list-left">' +
+            '<img src="'+thumb+'">' +
+            '</div>' +
+            '<div class="list-right">' +
+            '<h3>'+title+'</h3>' +
+            '<small>By <span class="cTitle">'+channelTitle+'</span> on '+videoDate+'</small>' +
+            '<p>'+description+'</p>' +
+            '</div>' +
+            '</li>' +
+            '<div class="clearfix"></div>' +
+            '';
+
+            return output;
+
+      }

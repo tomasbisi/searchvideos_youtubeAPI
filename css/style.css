@@ -87,7 +87,7 @@ footer {
 }
 
 #search-btn:hover {
-opacity: 0.9;
+  opacity: 0.9;
 }
 
 #search-btn {
@@ -102,4 +102,22 @@ opacity: 0.9;
   filter: opacity(65);
   opacity: 0.65;
   background: transparent url(../img/search.png) top left no-repeat;
+}
+
+#results li {
+  padding: 10px 0;
+  border-bottom: 1px #ccc dotted;
+  list-style: none;
+  overflow: auto;
+}
+
+.list-left {
+  float: left;
+  width: 20%;
+}
+
+.list-left img {
+  width: 100%;
+  padding: 3px;
+  border: solid #ccc 1px;
 }
